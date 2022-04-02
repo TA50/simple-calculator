@@ -1,0 +1,11 @@
+.backspace {
+    /* background-color: var(--back-color); */
+    background-color: transparent;
+    color: var(--fore-color);
+}
+.backspace > svg {
+    width: 50px;
+    height: 52px;
+    /* color: var(--fore-color);
+    stroke: var(--fore-color); */
+}

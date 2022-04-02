@@ -1,0 +1,36 @@
+.resultViewRoot {
+    text-align: right;
+}
+.result {
+    margin-bottom: 45px;
+}
+.result * {
+    text-align: right;
+    padding-top: 97px;
+}
+.result label {
+    display: block;
+    white-space: pre;
+    font-size: 100px;
+    letter-spacing: 0px;
+    line-height: 1.2;
+}
+.result small {
+    color: var(--gray-color);
+    width: auto; /* 166px */
+    height: auto; /* 26px */
+    white-space: pre;
+    font-size: 22px;
+    letter-spacing: 0px;
+    line-height: 1.2;
+}
+.seperator {
+    border-color: var(--gray-color);
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
