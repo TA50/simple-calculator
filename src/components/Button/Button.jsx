@@ -8,12 +8,16 @@ function Button(props) {
   if (Boolean(props.labelColor)) labelStyle.color = props.labelColor;
   if (Boolean(props.backgroundColor))
     style.backgroundColor = props.backgroundColor;
+
+    const className = [classes.keypadButton, props.className];
+    if(props.doubleHeight) className.push(classes.doubleHeight)
+    if(props.doubleWidth) className.push(classes.doubleWidth)
   // Events
   const onClickHandler = (e) => {};
 
   return (
     <button
-      className={classes.keypadButton}
+      className={className.join(" ")}
       style={style}
       onClick={onClickHandler}
     >
@@ -26,5 +30,6 @@ Button.propTypes = {
   label: PropTypes.string.isRequired,
   labelColor: PropTypes.string,
   backgroundColor: PropTypes.string,
+  className: PropTypes.string
 };
 export { Button };

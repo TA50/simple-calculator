@@ -1,36 +1,41 @@
 .resultViewRoot {
-    text-align: right;
+  text-align: right;
 }
 .result {
-    margin-bottom: 45px;
+  margin-bottom: 45px;
+  padding-top: 97px;
+}
+@media screen and (max-height: 800px) {
+  .result {
+    padding-top: 30px;
+  }
 }
 .result * {
-    text-align: right;
-    padding-top: 97px;
+  text-align: right;
 }
 .result label {
-    display: block;
-    white-space: pre;
-    font-size: 100px;
-    letter-spacing: 0px;
-    line-height: 1.2;
+  display: block;
+  white-space: pre;
+  font-size: 100px;
+  letter-spacing: 0px;
+  line-height: 1.2;
 }
 .result small {
-    color: var(--gray-color);
-    width: auto; /* 166px */
-    height: auto; /* 26px */
-    white-space: pre;
-    font-size: 22px;
-    letter-spacing: 0px;
-    line-height: 1.2;
+  color: var(--gray-color);
+  width: auto; /* 166px */
+  height: auto; /* 26px */
+  white-space: pre;
+  font-size: 22px;
+  letter-spacing: 0px;
+  line-height: 1.2;
 }
 .seperator {
-    border-color: var(--gray-color);
+  border-color: var(--gray-color);
 }
 
 .actions {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }

@@ -7,36 +7,35 @@ function Keypad() {
   const [theme] = useTheme();
   return (
     <div className={classes.keypad}>
-      <KeypadRow>
-        <Button label={"A"} />
-        <Button label={"B"} />
-        <Button label={"B"} backgroundColor={colors.light.primary} />
-        <Button label={"A"} />
-      </KeypadRow>
-      <KeypadRow>
-        <Button label={"A"} />
-        <Button label={"B"} />
-        <Button label={"B"} />
-        <Button label={"A"} />
-      </KeypadRow>
-      <KeypadRow>
-        <Button label={"A"} />
-        <Button label={"B"} labelColor={colors.light.primary} />
-        <Button label={"B"} />
-        <Button label={"A"} />
-      </KeypadRow>
-      <KeypadRow>
-        <Button label={"A"} />
-        <Button label={"B"} labelColor={colors.light.primary} />
-        <Button label={"B"} />
-        <Button label={"A"} />
-      </KeypadRow>
-      <KeypadRow>
-        <Button label={"A"} />
-        <Button label={"B"} labelColor={colors.light.primary} />
-        <Button label={"B"} />
-        <Button label={"A"} />
-      </KeypadRow>
+      {/* <KeypadRow> */}
+        <Button label={"AC"} />
+        <Button label={"( )"} />
+        <Button label={"×"} />
+        <Button label={"÷"} />
+      {/* </KeypadRow> */}
+      {/* <KeypadRow> */}
+        <Button label={"7"} />
+        <Button label={"8"} />
+        <Button label={"9"} />
+        <Button label={"-"} />
+      {/* </KeypadRow> */}
+      {/* <KeypadRow> */}
+        <Button label={"4"} />
+        <Button label={"5"} />
+        <Button label={"3"} />
+        <Button label={"+"} className={classes.doubleRow} />
+      {/* </KeypadRow> */}
+      {/* <KeypadRow> */}
+        <Button label={"1"} />
+        <Button label={"2"} />
+        <Button label={"3"} />
+        <Button label={"4"} />
+      {/* </KeypadRow> */}
+      {/* <KeypadRow> */}
+        <Button label={"0"} />
+        <Button label={"."} />
+        <Button label={"="} className={classes.doubleCol} />
+      {/* </KeypadRow> */}
     </div>
   );
 }

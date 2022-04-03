@@ -1,13 +1,13 @@
 .keypadButton {
-  width: 78px;
-  height: 52px;
+  /* min-width: 18%;
+  height: 52px; */
   box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.29),
     -1px -2px 2px 0px rgba(240, 240, 240, 0.21);
   background-color: var(--back-color);
   overflow: visible;
   border-radius: 5px;
   transition: box-shadow 0.3s;
-  margin-right: 20px;
+  /* margin-right: 20px; */
 }
 .keypadButton:last-child {
   margin-right: 0;
@@ -18,8 +18,6 @@
     -1px -2px 2px 0px hsla(0, 0%, 2%, 0.21);
 }
 .keypadButton label {
-  width: 78px;
-  height: 26px;
   white-space: pre-wrap;
   word-wrap: break-word;
   word-break: break-word;
@@ -29,3 +27,7 @@
   line-height: 1.2;
   text-align: center;
 }
+
+/* .doubleWidth{
+  min-width: 36%;
+} */
