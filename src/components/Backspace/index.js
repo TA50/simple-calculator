@@ -1,1 +1,1 @@
-export * from "./Backspace";
+export * from './Backspace';

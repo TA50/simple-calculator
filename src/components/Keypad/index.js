@@ -1,1 +1,2 @@
-export * from "./Keypad";
+// eslint-disable-next-line import/prefer-default-export
+export { default as Keypad } from './Keypad';

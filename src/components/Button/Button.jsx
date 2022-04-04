@@ -1,23 +1,26 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classes from "./Button.module.css";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classes from './Button.module.css';
+
 function Button(props) {
   const style = {};
   const labelStyle = {};
 
-  if (Boolean(props.labelColor)) labelStyle.color = props.labelColor;
-  if (Boolean(props.backgroundColor))
+  if (props.labelColor) labelStyle.color = props.labelColor;
+  if (props.backgroundColor) {
     style.backgroundColor = props.backgroundColor;
+  }
 
-    const className = [classes.keypadButton, props.className];
-    if(props.doubleHeight) className.push(classes.doubleHeight)
-    if(props.doubleWidth) className.push(classes.doubleWidth)
+  const className = [classes.keypadButton, props.className];
+  if (props.doubleHeight) className.push(classes.doubleHeight);
+  if (props.doubleWidth) className.push(classes.doubleWidth);
   // Events
-  const onClickHandler = (e) => {};
+  const onClickHandler = () => {};
 
   return (
     <button
-      className={className.join(" ")}
+      type="button"
+      className={className.join(' ')}
       style={style}
       onClick={onClickHandler}
     >
@@ -30,6 +33,11 @@ Button.propTypes = {
   label: PropTypes.string.isRequired,
   labelColor: PropTypes.string,
   backgroundColor: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
+};
+Button.defaultProps = {
+  labelColor: null,
+  backgroundColor: null,
+  className: '',
 };
 export { Button };
