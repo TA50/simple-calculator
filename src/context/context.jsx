@@ -1,27 +1,43 @@
 import React, { useMemo } from 'react';
-// [type: dark | light, toggleTheme]
+import { Calculator } from './calculator';
+
+export const Actions = Object.freeze({
+  ADD_NUMBER: 'ADD_NUMBER',
+  REMOVE_NUMBER: 'REMOVE_NUMBER',
+  CALCULATE: 'CALCULATE',
+});
+
 const initialValue = {
   calculations: '',
-  result: null,
+  result: 0,
+  calculated: false,
 };
+const calculator = new Calculator();
 const appContext = React.createContext([initialValue, () => {}]);
 
-// Actions
-const ADD_NUMBER = 'ADD_NUMBER';
-const REMOVE_NUMBER = 'REMOVE_NUMBER';
-
 // Reducer
-const appReducer = (action, state = initialValue) => {
+const appReducer = (state = initialValue, action = {}) => {
   const newState = { ...state };
   switch (action.type) {
-    case ADD_NUMBER:
+    case Actions.ADD_NUMBER:
+      if (state.calculated) {
+        newState.calculations = '';
+        newState.calculated = false;
+      }
       newState.calculations += action.payload;
       return newState;
-    case REMOVE_NUMBER: {
+    case Actions.REMOVE_NUMBER: {
       // newState.calculations = newState.calculations.slice(0, newState.)
       const claculations = newState.calculations.split('');
       claculations.pop();
       newState.claculations = claculations.join('');
+      return newState;
+    }
+    case Actions.CALCULATE: {
+      const result = calculator.calculate(state.calculations);
+      console.log(result);
+      newState.result = result;
+      newState.calculated = true;
       return newState;
     }
     default:
@@ -32,7 +48,10 @@ const appReducer = (action, state = initialValue) => {
 // Provider
 export function AppContextProvider(props) {
   const [state, dispatch] = React.useReducer(appReducer);
-  const value = useMemo(() => [state, dispatch], [state]);
+  const value = useMemo(
+    () => [state || initialValue, dispatch],
+    [state, dispatch]
+  );
   return (
     <appContext.Provider value={value}>{props.children}</appContext.Provider>
   );

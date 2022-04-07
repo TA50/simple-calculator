@@ -19,5 +19,9 @@ module.exports = {
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
+    'no-console': 'warn',
+    'comma-dangle': 'warn',
+    'class-methods-use-this': 'off',
+    'no-eval': 'off',
   },
 };

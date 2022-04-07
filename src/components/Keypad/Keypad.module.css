@@ -20,7 +20,13 @@
 .doubleRow {
   grid-row: span 2;
 }
-
+.primaryFont label {
+  color: var(--primary-color);
+}
+.primaryBackground {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
 .doubleCol {
   grid-column: span 2;
 }
