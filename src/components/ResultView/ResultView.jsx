@@ -1,17 +1,22 @@
 import React from 'react';
-import { useAppState } from '../../context/context';
+import { Actions } from '../../context';
+import { useAppState, useAppDispatch } from '../../context/context';
 import { Backspace } from '../Backspace/Backspace';
 import { ThemeSwitch } from '../ThemeSwitch';
 import classes from './ResultView.module.css';
 
 function ResultView() {
   const { result, displayCalculations } = useAppState();
+  const dispatch = useAppDispatch();
   const displayResult = () => {
     const r = result.toString();
     if (r.includes('.')) {
       return result.toFixed(4);
     }
     return result;
+  };
+  const backspaceHandler = () => {
+    dispatch({ type: Actions.REMOVE_CHARACTER });
   };
   return (
     <section className={classes.resultViewRoot}>
@@ -22,7 +27,7 @@ function ResultView() {
       </div>
       <div className={classes.actions}>
         <ThemeSwitch />
-        <Backspace />
+        <Backspace onClick={backspaceHandler} />
       </div>
       <hr className={classes.seperator} />
     </section>

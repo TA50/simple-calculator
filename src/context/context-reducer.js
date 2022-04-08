@@ -58,16 +58,18 @@ export const contextReducer = (state = initialValue, action = {}) => {
     case Actions.REMOVE_CHARACTER: {
       newState.calculations = newState.calculations.slice(
         0,
-        newState.calculations.length - 1
+        newState.calculations.length - 1,
       );
       newState.displayCalculations = newState.displayCalculations.slice(
         0,
-        newState.calculations.length - 1
+        newState.calculations.length - 1,
       );
       return newState;
     }
     case Actions.CALCULATE: {
       const result = calculator.calculate(state.calculations);
+      console.log(result);
+      console.log(result instanceof String);
       if (result instanceof String) {
         newState.error = result;
         return newState;
@@ -78,6 +80,7 @@ export const contextReducer = (state = initialValue, action = {}) => {
     }
     case Actions.ADD_OPERATOR: {
       if (!action.payload.isOperator()) return newState;
+
       if (state.calculated) {
         newState.calculations = `${state.result}${
           operatorsMap[action.payload]
@@ -89,7 +92,10 @@ export const contextReducer = (state = initialValue, action = {}) => {
         return newState;
       }
       const { calculations } = newState;
-      if (calculations.endWithOperator() && action.payload !== '-') {
+      if (
+        (newState.calculations === '' || calculations.endWithOperator())
+        && action.payload !== '-'
+      ) {
         return newState;
       }
       newState.calculations += operatorsMap[action.payload];

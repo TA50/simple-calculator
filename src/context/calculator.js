@@ -7,7 +7,7 @@ export class Calculator {
   calculate(str) {
     try {
       const validation = this.validate(str);
-      if (validation) {
+      if (validation[0]) {
         const result = eval(str);
         return result;
       }
@@ -34,6 +34,6 @@ export class Calculator {
     if (str.endWithOperator()) {
       return [false, 'equation should be completed with a number !'];
     }
-    return true;
+    return [true, null];
   }
 }

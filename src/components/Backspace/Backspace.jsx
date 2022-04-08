@@ -2,7 +2,7 @@ import React from 'react';
 import { useTheme } from '../../theme';
 import classes from './Backspace.module.css';
 
-function Backspace() {
+function Backspace(props) {
   const backspaceSvg = {
     dark: (
       <svg
@@ -88,8 +88,9 @@ function Backspace() {
     ),
   };
   const [theme] = useTheme();
+
   return (
-    <button type="button" className={classes.backspace}>
+    <button type="button" className={classes.backspace} onClick={props.onClick}>
       {backspaceSvg[theme]}
     </button>
   );
