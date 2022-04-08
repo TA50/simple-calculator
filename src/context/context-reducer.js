@@ -68,9 +68,7 @@ export const contextReducer = (state = initialValue, action = {}) => {
     }
     case Actions.CALCULATE: {
       const result = calculator.calculate(state.calculations);
-      console.log(result);
-      console.log(result instanceof String);
-      if (result instanceof String) {
+      if (typeof result === 'string') {
         newState.error = result;
         return newState;
       }

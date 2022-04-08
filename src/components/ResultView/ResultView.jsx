@@ -22,8 +22,10 @@ function ResultView() {
     <section className={classes.resultViewRoot}>
       <div className={classes.result}>
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label>{displayResult()}</label>
-        <small>{displayCalculations || <br />}</small>
+        <label data-testid="result">{displayResult()}</label>
+        <small data-testid="calculations">
+          {displayCalculations || <br />}
+        </small>
       </div>
       <div className={classes.actions}>
         <ThemeSwitch />
