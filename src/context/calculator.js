@@ -13,9 +13,8 @@ export class Calculator {
       }
       return validation[1];
     } catch (e) {
-      console.log(e);
+      return e.message;
     }
-    return 0;
   }
 
   /**

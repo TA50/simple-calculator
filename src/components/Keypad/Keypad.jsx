@@ -2,10 +2,11 @@ import React from 'react';
 import { Button } from '../Button';
 import { useTheme } from '../../theme';
 import classes from './Keypad.module.css';
+import { useAppState } from '../../context';
 
 function Keypad() {
   const [theme] = useTheme();
-
+  const state = useAppState();
   return (
     <div className={classes.keypad}>
       {/* <KeypadRow> */}
@@ -19,6 +20,7 @@ function Keypad() {
       />
       <Button
         label=")"
+        disabled={state.disableCloseBracket()}
         className={theme === 'dark' ? classes.primaryFont : null}
       />
       <Button
@@ -50,9 +52,10 @@ function Keypad() {
       />
 
       <Button label="0" />
-      <Button label="." />
+      <Button label="." disabled={state.disableDot()} />
       <Button
         label="="
+        disabled={state.disableCalculate()}
         className={`${classes.doubleCol} ${classes.primaryBackground}`}
       />
     </div>

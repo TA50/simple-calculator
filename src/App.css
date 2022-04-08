@@ -23,16 +23,20 @@ body,
 #root,
 main {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 main {
+  /* max-width: 800px; */
   background-color: var(--back-color);
   padding: 0 20px;
+  padding-bottom: 20px;
 }
 
-main * {
+main > * {
+  max-width: 500px;
+  margin: auto;
   transition: color 0.5s, background-color 0.5s, border-color 0.5s;
 }
 
@@ -40,4 +44,12 @@ button {
   outline: none;
   border: none;
   text-align: center;
+}
+@media screen and (min-width: 800px) {
+}
+
+@media screen and (max-height: 680px) {
+  :root {
+    font-size: 10px;
+  }
 }

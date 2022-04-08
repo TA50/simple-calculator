@@ -24,6 +24,7 @@ function Button(props) {
       type="button"
       className={className.join(' ')}
       style={style}
+      disabled={props.disabled}
       onClick={vm.onClick}
     >
       <label style={labelStyle}>{props.label}</label>
@@ -40,10 +41,12 @@ Button.propTypes = {
   labelColor: PropTypes.string,
   backgroundColor: PropTypes.string,
   className: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 Button.defaultProps = {
   labelColor: null,
   backgroundColor: null,
   className: '',
+  disabled: false,
 };
 export { Button };

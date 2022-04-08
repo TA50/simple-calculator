@@ -3,7 +3,9 @@ import { operatorsMap } from './helpers';
 
 /**
  * @typedef {{ calculations:  string; displayCalculations: string;
- * result: number;  calculated: boolean; error: string | null;
+ * result: string;  calculated: boolean; error: string | null;
+ * disableCalculate: ()=>boolean; disableCloseBracket: ()=>boolean;
+ * disableDot: ()=>boolean;
  * } AppState
  */
 
@@ -29,9 +31,21 @@ export const Actions = Object.freeze({
 export const initialValue = {
   calculations: '',
   displayCalculations: '',
-  result: 0,
+  result: '',
   calculated: false,
   error: null,
+  disableCalculate() {
+    return this.calculations === '';
+  },
+  disableCloseBracket() {
+    return (
+      this.calculations.getNumberOfCharacters('(')
+      <= this.calculations.getNumberOfCharacters(')')
+    );
+  },
+  disableDot() {
+    return this.calculations.endsWith('.');
+  },
 };
 const calculator = new Calculator();
 
@@ -46,10 +60,14 @@ export const contextReducer = (state = initialValue, action = {}) => {
   const newState = { ...state, error: null };
   switch (action.type) {
     case Actions.ADD_NUMBER: {
+      if (newState.calculations.endsWith('.') && action.payload === '.') {
+        return newState;
+      }
       if (state.calculated) {
         newState.calculations = '';
         newState.displayCalculations = newState.calculations;
         newState.calculated = false;
+        newState.result = '';
       }
       newState.calculations += action.payload;
       newState.displayCalculations += action.payload;
@@ -67,10 +85,17 @@ export const contextReducer = (state = initialValue, action = {}) => {
       return newState;
     }
     case Actions.CALCULATE: {
-      const result = calculator.calculate(state.calculations);
+      if (newState.calculations === '') {
+        return newState;
+      }
+      let result = calculator.calculate(state.calculations);
       if (typeof result === 'string') {
         newState.error = result;
         return newState;
+      }
+      const r = result.toString();
+      if (r.includes('.')) {
+        result = (+r).toFixed(4).toString().removeExtraZeros();
       }
       newState.result = result;
       newState.calculated = true;
@@ -83,10 +108,12 @@ export const contextReducer = (state = initialValue, action = {}) => {
         newState.calculations = `${state.result}${
           operatorsMap[action.payload]
         }`;
-        newState.displayCalculations = `${state.result.toFixed(4)}${
-          action.payload
-        }`;
+        newState.displayCalculations = `${(+state.result)
+          .toFixed(4)
+          .toString()
+          .removeExtraZeros()}${action.payload}`;
         newState.calculated = false;
+        newState.result = '';
         return newState;
       }
       const { calculations } = newState;
@@ -98,6 +125,7 @@ export const contextReducer = (state = initialValue, action = {}) => {
       }
       newState.calculations += operatorsMap[action.payload];
       newState.displayCalculations += action.payload;
+      newState.result = '';
       return newState;
     }
     case Actions.CLEAR_ALL: {
@@ -114,9 +142,13 @@ export const contextReducer = (state = initialValue, action = {}) => {
     }
     case Actions.CLOSE_BRACKET: {
       // should not close a bracket that is not opened 😎
-      if (!newState.calculations.includes('(')) {
+      if (
+        newState.calculations.getNumberOfCharacters('(')
+        <= newState.calculations.getNumberOfCharacters(')')
+      ) {
         return newState;
       }
+
       newState.calculations += ')';
       newState.displayCalculations += ')';
       return newState;

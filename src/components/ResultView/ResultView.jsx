@@ -8,10 +8,16 @@ import classes from './ResultView.module.css';
 function ResultView() {
   const { result, displayCalculations } = useAppState();
   const dispatch = useAppDispatch();
-  const displayResult = () => {
-    const r = result.toString();
-    if (r.includes('.')) {
-      return result.toFixed(4);
+  console.log({ result });
+  const displaySmallText = () => {
+    if (result === '') {
+      return <br />;
+    }
+    return displayCalculations;
+  };
+  const displayLargeText = () => {
+    if (result === '') {
+      return displayCalculations;
     }
     return result;
   };
@@ -22,10 +28,8 @@ function ResultView() {
     <section className={classes.resultViewRoot}>
       <div className={classes.result}>
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label data-testid="result">{displayResult()}</label>
-        <small data-testid="calculations">
-          {displayCalculations || <br />}
-        </small>
+        <label data-testid="result">{displayLargeText() || 0}</label>
+        <small data-testid="calculations">{displaySmallText() || <br />}</small>
       </div>
       <div className={classes.actions}>
         <ThemeSwitch />
