@@ -7,9 +7,11 @@ export default function App() {
   const [theme] = useTheme();
   return (
     <main className={theme}>
-      <Toast />
-      <ResultView />
-      <Keypad />
+      <div>
+        <Toast />
+        <ResultView />
+        <Keypad />
+      </div>
     </main>
   );
 }

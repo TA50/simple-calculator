@@ -46,6 +46,15 @@ button {
   text-align: center;
 }
 @media screen and (min-width: 800px) {
+  main {
+    padding-top: 20%;
+  }
+  main > div {
+    padding: 1rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--fore-color);
+  }
 }
 
 @media screen and (max-height: 680px) {
