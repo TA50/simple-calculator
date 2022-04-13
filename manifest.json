@@ -1,7 +1,7 @@
 {
     "name": "Simple Calculator",
     "short_name": "Calculator",
-    "start_url": "/index.html",
+    "start_url": "/simple-calculator/index.html",
     "display": "standalone",
     "orientation": "portrait-primary",
     "background_color": "#ededed",
