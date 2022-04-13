@@ -1,0 +1,17 @@
+{
+    "name": "Simple Calculator",
+    "short_name": "Calculator",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "background_color": "#ededed",
+    "theme_color": "#ededed",
+    "icons": [
+      
+        {
+            "src": "favicon.png",
+            "sizes": "1000x1000",
+            "type": "image/png"
+          }
+    ]
+}
