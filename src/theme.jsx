@@ -1,25 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 // [type: dark | light, toggleTheme]
 
-const themeContext = React.createContext(['default', () => {}]);
-
-export function ThemeProvider(props) {
-  const [theme, setTheme] = React.useState('dark');
-  const toggleTheme = () => {
-    setTheme((prev) => {
-      if (prev === 'dark') return 'light';
-      return 'dark';
-    });
-  };
-  const value = useMemo(() => [theme, toggleTheme], [theme]);
-  return (
-    <themeContext.Provider value={value}>
-      {props.children}
-    </themeContext.Provider>
-  );
-}
-
-export const useTheme = () => React.useContext(themeContext);
+const themeContext = React.createContext(['default', () => { }]);
 
 export const colors = {
   light: {
@@ -33,3 +15,28 @@ export const colors = {
     backColor: '#23323e',
   },
 };
+
+const themeMeta = document.getElementsByName('theme')[0];
+export function ThemeProvider(props) {
+  const [theme, setTheme] = React.useState('dark');
+  const toggleTheme = () => {
+    setTheme((prev) => {
+      console.log(themeMeta);
+      if (prev === 'dark') {
+        return 'light';
+      }
+      return 'dark';
+    });
+  };
+  useEffect(() => {
+    themeMeta.content = colors[theme].backColor;
+  }, [theme]);
+  const value = useMemo(() => [theme, toggleTheme], [theme]);
+  return (
+    <themeContext.Provider value={value}>
+      {props.children}
+    </themeContext.Provider>
+  );
+}
+
+export const useTheme = () => React.useContext(themeContext);
